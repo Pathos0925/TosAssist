@@ -1,0 +1,1260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Some abilities inform you that someone did something to YOU. Those messages require a spy version of the message. -->
+<Entries>
+	<Entry>
+		<id>0</id>
+		<Text>Your target is a member of the mafia!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>1</id>
+		<Text>Your target is not suspicious.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>2</id>
+		<Text>Your target is a member of the Cult!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>3</id>
+		<Text>Your target is a Serial Killer!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>4</id>
+		<Text>You were executed by the Jailor!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>5</id>
+		<Text>Someone tried to transport you but you were in jail.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>6</id>
+		<Text>You were transported to another location.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_6</id>
+        <Text>Your target was transported to another location.</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>7</id>
+		<Text>Someone tried to role block you but you were in jail.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>8</id>
+		<Text>Someone occupied your night. You were role blocked!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_8</id>
+        <Text>Someone occupied your target's night. They were role blocked!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>9</id>
+		<Text>Someone tried to blackmail you but you were in jail last night.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>10</id>
+		<Text>Someone threatened to reveal your secrets. You are blackmailed!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_10</id>
+        <Text>Someone threatened to reveal your target's secrets. They were blackmailed!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>11</id>
+		<Text>Someone tried to douse you in gas but you were in jail last night!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>12</id>
+		<Text>You were doused in gas!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_12</id>
+        <Text>Your target was doused in gas!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>13</id>
+		<Text>Someone tried to attack you but you were in jail last night!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>14</id>
+		<Text>You were attacked but someone fought off your attacker!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_14</id>
+        <Text>Your target was attacked but someone fought off their attacker!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>15</id>
+		<Text>You were attacked but someone nursed you back to health!</Text>
+		<Color>0x00FF00</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_15</id>
+        <Text>Your target was attacked but someone nursed them back to health!</Text>
+        <Color>0x00FF00</Color>
+    </Entry>
+	<Entry>
+		<id>16</id>
+		<Text>You were attacked by a member of the Mafia!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_16</id>
+        <Text>Your target was attacked by a member of the Mafia!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>17</id>
+		<Text>You were attacked by a Serial Killer!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_17</id>
+        <Text>Your target was attacked by a Serial Killer!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>18</id>
+		<Text>You were shot by a Vigilante!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_18</id>
+        <Text>Your target was shot by a Vigilante!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>19</id>
+		<Text>You were set on fire by an Arsonist!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_19</id>
+        <Text>Your target was set on fire by an Arsonist!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>20</id>
+		<Text>You were shot by the Veteran you visited!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_20</id>
+        <Text>Your target was shot by the Veteran they visited!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>21</id>
+		<Text>You were killed protecting your target!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_21</id>
+        <Text>Your target was killed protecting someone!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>22</id>
+		<Text>Your target was attacked last night!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_22</id>
+        <Text>Your target's target was attacked last night!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>23</id>
+		<Text>An Arsonist tried to douse you in gas but a Bodyguard fought off your attacker!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_23</id>
+        <Text>An Arsonist tried to douse your target but a Bodyguard fought off the attack!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>24</id>
+		<Text>You were murdered by the Serial Killer you visited!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_24</id>
+        <Text>Your target was murdered by the Serial Killer they visited!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>25</id>
+		<Text>Your target has a desire to deceive. They must be a Framer!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>26</id>
+		<Text>Your target could be an Escort, Transporter, or Consort.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>Coven26</id>
+		<Text>Your target could be an Escort, Transporter, Consort, or Hypnotist.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>27</id>
+		<Text>Your target could be a Doctor, Disguiser, or Serial Killer.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>Coven27</id>
+		<Text>Your target could be a Doctor, Disguiser, Serial Killer, or Potion Master.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>28</id>
+		<Text>Your target could be a Investigator, Consigliere, or Mayor.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>Coven28</id>
+		<Text>Your target could be a Investigator, Consigliere, Mayor, Tracker, or Plaguebearer.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>29</id>
+		<Text>Your target is the Mystery role!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>30</id>
+		<Text>Your target could be a Bodyguard, Godfather, or Arsonist.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>Coven30</id>
+		<Text>Your target could be a Bodyguard, Godfather, Arsonist, or Crusader.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>31</id>
+		<Text>Your target could be a Vigilante, Veteran, or Mafioso.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>Coven31</id>
+		<Text>Your target could be a Vigilante, Veteran, Mafioso, Pirate, or Ambusher.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>32</id>
+		<Text>Your target could be a Medium, Janitor, or Retributionist.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>Coven32</id>
+		<Text>Your target could be a Medium, Janitor, Retributionist, Necromancer, or Trapper.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>33</id>
+		<Text>Your target could be a Survivor, Vampire Hunter, or Amnesiac.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>Coven33</id>
+		<Text>Your target could be a Survivor, Vampire Hunter, Amnesiac, Medusa, or Psychic.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>34</id>
+		<Text>Your target could be a Spy, Blackmailer, or Jailor.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>Coven34</id>
+		<Text>Your target could be a Spy, Blackmailer, Jailor, or Guardian Angel.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>35</id>
+		<Text>Your target could be a Sheriff, Executioner, or Werewolf.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>Coven35</id>
+		<Text>Your target could be a Sheriff, Executioner, Werewolf, or Poisoner.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>36</id>
+		<Text>UNUSED.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>37</id>
+		<Text>Your target could be a Framer, Vampire, or Jester.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>Coven37</id>
+		<Text>Your target could be a Framer, Vampire, Jester, or Hex Master.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>38</id>
+		<Text>Your target could be a Lookout, Forger, or Witch.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>Coven38</id>
+		<Text>Your target could be a Lookout, Forger, or Coven Leader.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>39</id>
+		<Text>A Bodyguard attacked you but someone nursed you back to health!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_39</id>
+        <Text>A Bodyguard attacked your target but someone nursed them back to health!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>40</id>
+		<Text>A Bodyguard attacked you but someone fought off your attacker!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_40</id>
+        <Text>A Bodyguard attacked your target but someone fought them off!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>41</id>
+		<Text>You were killed by a Bodyguard!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_41</id>
+        <Text>Your target was killed by a Bodyguard!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>42</id>
+		<Text>Someone attacked you but your defense was too strong!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_42</id>
+        <Text>Someone attacked your target but their defense was too strong!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>43</id>
+		<Text>One of your targets was jailed so you could not transport them!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>44</id>
+		<Text>Your target is a trained protector. They must be a Bodyguard.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>45</id>
+		<Text>Your target specializes in transportation. They must be a Transporter.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>46</id>
+		<Text>Your target is a professional surgeon. They must be a Doctor.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>47</id>
+		<Text>Your target is a beautiful person working for the town. They must be an Escort.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>48</id>
+		<Text>Your target gathers information about people. They must be an Investigator.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>49</id>
+		<Text>Your target detains people at night. They must be a Jailor.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>50</id>
+		<Text>Your target watches who visits people at night. They must be a Lookout.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>51</id>
+		<Text>Your target is a member of a secret town organization. They must be a Mason.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>52</id>
+		<Text>Your target the leader of a secret town organization. They must be a Mason Leader.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>53</id>
+		<Text>Your target is the leader of the town. They must be the Mayor.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>54</id>
+		<Text>Your target is a protector of the town. They must be a Sheriff.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>55</id>
+		<Text>Your target secretly watches who someone visits. They must be a Spy.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>56</id>
+		<Text>Your target is a paranoid war hero. They must be a Veteran.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>57</id>
+		<Text>Your target will bend the law to enact justice. They must be a Vigilante.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>58</id>
+		<Text>Your target speaks with the dead. They must be a Medium.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>59</id>
+		<Text>Your target wields mystical powers. They must be a Retributionist.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>60</id>
+		<Text>Your target uses information to silence people. They must be a Blackmailer.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>61</id>
+		<Text>Your target gathers information for the Mafia. They must be a Consigliere.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>62</id>
+		<Text>Your target is a beautiful person working for the Mafia. They must be a Consort.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>63</id>
+		<Text>Your target pretends to be other people. They must be a Disguiser.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>64</id>
+		<Text>Your target is good at forging documents. They must be a Forger.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>65</id>
+		<Text>Your target is the leader of the Mafia. They must be the Godfather.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>66</id>
+		<Text>Your target cleans up dead bodies. They must be a Janitor.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>67</id>
+		<Text>Your target does the Godfather's dirty work. They must be a Mafioso.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>68</id>
+		<Text>Your target does not remember their role. They must be an Amnesiac.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>69</id>
+		<Text>Your target likes to watch things burn. They must be an Arsonist.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>70</id>
+		<Text>Your target is a member of an evil secret organization. They must be a Cultist.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>71</id>
+		<Text>Your target wants someone to be lynched at any cost. They must be an Executioner.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>72</id>
+		<Text>Your target wants to be lynched. They must be a Jester.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>73</id>
+		<Text>Your target wants to kill everyone. They must be a Serial Killer.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>74</id>
+		<Text>Your target simply wants to live. They must be a Survivor.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>75</id>
+		<Text>Your target casts spells on people. They must be a Witch.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>76</id>
+		<Text>Your target was jailed so you could not control them.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>77</id>
+		<Text>Someone tried to role block you but you are immune!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_77</id>
+        <Text>Someone tried to role block your target but they were immune!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>78</id>
+		<Text>You feel a mystical power dominating you. You were controlled by a Witch!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_78</id>
+        <Text>Your target was controlled by a Witch!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>79</id>
+		<Text>A Witch tried to control you but you are immune.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_79</id>
+        <Text>A Witch tried to control your target but they were immune.</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>80</id>
+		<Text>Someone tried to control you last night but you were jailed.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>81</id>
+		<Text>has joined the Town.</Text>
+		<Color>0x505050</Color>
+	</Entry>
+	<Entry>
+		<id>82</id>
+		<Text>You have attempted to remember who you were!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>83</id>
+		<Text>You were haunted by the Jester. You committed suicide over the guilt!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_83</id>
+        <Text>Your target was haunted by the Jester and committed suicide!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>84</id>
+		<Text>You were attacked but your bulletproof vest saved you!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_84</id>
+        <Text>Your target was attacked but their bulletproof vest saved them!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>85</id>
+		<Text>You shot someone who visited you last night!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>86</id>
+		<Text>Someone tried to attack you but your defense while on alert was too strong!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_86</id>
+        <Text>Someone tried to attack your alert target and failed!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>87</id>
+		<Text>You were haunted by the Jester. You tried to commit suicide but someone healed you!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>88</id>
+		<Text>You could not get over the guilt of killing a town member. You shot yourself!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_88</id>
+        <Text>Your target shot themselves over the guilt of killing a town member!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>89</id>
+		<Text>Someone role blocked you, so you attacked them!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_89</id>
+        <Text>Someone role blocked your target, so your target attacked them!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>90</id>
+		<Text>The Godfather has ordered you to kill his target.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>91</id>
+		<Text>You cannot resurrect a user who has left the game.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>92</id>
+		<Text>You have cleaned the gasoline off of yourself.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_92</id>
+        <Text>Your target has cleaned the gasoline off of themself.</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>93</id>
+		<Text>The jailor has decided to execute you.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>94</id>
+		<Text>The jailor has changed his mind.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>95</id>
+		<Text>You were killed by the Serial Killer you jailed.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_95</id>
+        <Text>Your target was killed by the Serial Killer they jailed.</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>96</id>
+		<Text>You attacked the jailor!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>97</id>
+		<Text>Your target&apos;s defense was too strong to kill.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>98</id>
+		<Text>The jester will get his revenge from the grave!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>99</id>
+		<Text>You did not select a target so one was chosen at random.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>100</id>
+		<Text>There is a full moon out tonight.</Text>
+		<Color>0x00CCFF</Color>
+	</Entry>
+	<Entry>
+		<id>101</id>
+		<Text>You attacked someone.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>102</id>
+		<Text>Your target is a Werewolf!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>103</id>
+		<Text>You were attacked by a Werewolf!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_103</id>
+        <Text>Your target was attacked by a Werewolf!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>104</id>
+		<Text>The light of the full moon has transformed you into a rampaging Werewolf!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>105</id>
+		<Text>Someone role blocked you so you stayed at home tonight.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_105</id>
+        <Text>Someone role blocked your target so they stayed at home.</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>106</id>
+		<Text>Your target howls at the moon. They must be a Werewolf.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>107</id>
+		<Text>You did not perform your day ability.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>108</id>
+		<Text>You did not perform your night ability.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>109</id>
+		<Text>You were staked by a Vampire Hunter!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_109</id>
+        <Text>Your target was staked by a Vampire Hunter!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>110</id>
+		<Text>You were staked by the Vampire Hunter you visited!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_110</id>
+        <Text>Your target was staked by the Vampire Hunter they visited!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>111</id>
+		<Text>You staked the Vampire who attacked you!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_111</id>
+        <Text>Your target staked the Vampire that attacked them!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>112</id>
+		<Text>Your target tracks Vampires. They must be a Vampire Hunter!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>113</id>
+		<Text>Your target drinks blood. They must be a Vampire!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>114</id>
+        <Text>You were attacked by a Vampire!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+    <Entry>
+        <id>SpyResult_114</id>
+        <Text>Your target was attacked by a Vampire!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+    <Entry>
+        <id>115</id>
+        <Text>You can't whisper to a revealed Mayor.</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+    <Entry>
+        <id>116</id>
+        <Text>You can't whisper once you have revealed as the Mayor!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+    <Entry>
+        <id>117</id>
+        <Text>You feel that someone can hear your conversations.</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+    <Entry>
+        <id>118</id>
+        <Text>You feel like you can speak privately.</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>120</id>
+		<Text>You were attacked but someone protected you!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_120</id>
+        <Text>Your target was attacked but someone protected them!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	
+	
+	
+	<!-- Coven-specific entries -->
+	
+	<Entry>
+		<id>121</id>
+		<Text>You were attacked by a Crusader!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_121</id>
+        <Text>Your target was attacked by a Crusader!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>122</id>
+		<Text>You were attacked by Pestilence!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_122</id>
+        <Text>Your target was attacked by Pestilence!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>123</id>
+		<Text>You were attacked by the Juggernaut!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_123</id>
+        <Text>Your target was attacked by the Juggernaut!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>124</id>
+		<Text>You were attacked but your Guardian Angel saved you!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_124</id>
+        <Text>Your target was attacked but their Guardian Angel saved them!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>125</id>
+		<Text>You were attacked by a Pirate!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_125</id>
+        <Text>Your target was attacked by a Pirate!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>126</id>
+		<Text>Your life force was drained by the Coven Leader!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_126</id>
+        <Text>Your target's life force was drained by the Coven Leader!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>127</id><!-- This is a Hex Master attack -->
+		<Text>You were attacked by a Hex Master!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_127</id>
+        <Text>Your target was attacked by a Hex Master!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>128</id><!-- This is a Necromancer Necronomicon attack -->
+		<Text>You were attacked by a Necromancer!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_128</id>
+        <Text>Your target was attacked by a Necromancer!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>129</id>
+		<Text>Someone tried to poison you but you were jailed last night!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>130</id>
+		<Text>Someone tried to poison you but someone fought off your attacker!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_130</id>
+        <Text>Someone tried to poison your target but someone fought them off!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>131</id>
+		<Text>You were poisoned but someone nursed you back to health!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_131</id>
+        <Text>Your target was poisoned but someone nursed them back to health!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>132</id>
+		<Text>You were poisoned. You will die tomorrow unless you are cured!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_132</id>
+        <Text>Your target was poisoned. They will die tomorrow unless cured!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>133</id>
+		<Text>You died to poison!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_133</id>
+        <Text>Your target died to poison!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>134</id>
+		<Text>You were cured of poison!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_134</id>
+        <Text>Your target was cured of poison!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>135</id>
+		<Text>You were poisoned. You will die tomorrow!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_135</id>
+        <Text>Your target was poisoned. They will die tomorrow!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>136</id>
+		<Text>You turned someone to stone.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>137</id>
+		<Text>You were turned to stone.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_137</id>
+        <Text>Your target was turned to stone.</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>138</id>
+		<Text>Your target is a divine protector. They must be a Crusader.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>139</id>
+		<Text>You triggered a trap!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>140</id>
+		<Text>You were attacked but a trap saved you!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_140</id>
+        <Text>Your target was attacked but a trap saved them!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>141</id>
+		<Text>A plague has consumed the town summoning Pestilence, Horseman of the Apocalypse!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>142</id>
+		<Text>Your target is a skilled in the art of tracking. They must be a Tracker.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>143</id>
+		<Text>Your target is waiting for a big catch. They must be a Trapper.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>144</id>
+		<Text>Your target has the sight. They must be a Psychic.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>145</id>
+		<Text>The town is too evil to find anyone good!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>146</id>
+		<Text>The town is too small to accurately find an evildoer!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>147</id>
+		<Text>The Guardian Angel was watching over you!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>148</id><!-- This is a Potion Master attack -->
+		<Text>You were attacked by a Potion Master!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_148</id>
+        <Text>Your target was attacked by a Potion Master!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>149</id>
+		<Text>Your target is a carrier of disease. They must be the Plaguebearer.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>150</id>
+		<Text>Your target reeks of disease. They must be Pestilence, Horseman of the Apocalypse.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>151</id>
+		<Text>Your target gets more powerful with each kill. They must be a Juggernaut.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>152</id>
+		<Text>Your target is watching over someone. They must be a Guardian Angel.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>153</id>
+		<Text>Your target wants to plunder the town. They must be a Pirate.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>154</id>
+		<Text>Your target works with alchemy. They must be a Potion Master.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>155</id>
+		<Text>Your target leads the mystical. They must be the Coven Leader.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>156</id>
+		<Text>Your target is versed in the ways of hexes. They must be the Hex Master.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>157</id>
+		<Text>Your target uses the deceased to do their dirty work. They must be the Necromancer.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>158</id>
+		<Text>Your target uses herbs and plants to kill their victims. They must be the Poisoner.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>159</id>
+		<Text>Your target has a gaze of stone. They must be Medusa.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>160</id>
+		<Text>Your target lies in wait. They must be an Ambusher.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>161</id>
+		<Text>Your target is skilled at disrupting others. They must be a Hypnotist.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>162</id>
+		<Text>Your trap attacked someone!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>163</id>
+		<Text>Your target was hauled off to jail so you couldn't duel them.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>164</id>
+		<Text>Your ability failed because your target was in jail.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>165</id>
+		<Text>You could not attack your target because they were in jail.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>166</id>
+		<Text>Your target wasn't home, but you rampaged anyways.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>167</id>
+		<Text>Juggernaut killed healed player.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>168</id>
+		<Text>Your target is a member of the Coven!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>169</id>
+		<Text>You could not resurrect your unique target!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>170</id>
+		<Text>You could not remember the unique role!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>171</id>
+		<Text>You were hauled off to jail so you couldn't duel your target.</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>172</id>
+		<Text>An unstoppable force meets an invincible object. The ground beneath your feet shudders!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+        <id>173</id>
+        <Text>You cannot whisper in a VIP game.</Text>
+    </Entry>
+	<Entry>
+        <id>174</id>
+        <Text>Your lover died. You can feel your heart breaking.</Text>
+    </Entry>
+	<Entry>
+        <id>175</id>
+        <Text>You care not for a lover for a Horseman feels no love, no pain, no happiness.</Text>
+    </Entry>
+	<Entry>
+		<id>176</id>
+		<Text>You jailed Pestilence and were obliterated. Flummery!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_176</id>
+        <Text>Your target jailed Pestilence and was obliterated.</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>177</id>
+		<Text>A trap attacked you but someone nursed you back to health!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>SpyResult_177</id>
+        <Text>A trap attacked your target but someone nursed them back to health!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+		<id>178</id>
+		<Text>You attacked the pirate for roleblocking you. The scallywag!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>179</id>
+		<Text>You attacked someone visiting your target!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>180</id>
+		<Text>Your ghoul was attacked by a Bodyguard!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>181</id>
+		<Text>Your ghoul was stopped in its tracks by a trap!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+	<Entry>
+		<id>182</id>
+		<Text>A ghoul visited your target last night!</Text>
+		<Color>0xFF0000</Color>
+	</Entry>
+    <Entry>
+        <id>183</id>
+        <Text>You were bitten by a Vampire!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+	<Entry>
+        <id>184</id>
+        <Text>You rampaged at home last night!</Text>
+        <Color>0xFF0000</Color>
+    </Entry>
+    
+    <!-- STOP! ARE YOU ADDING A NEW ENTRY? IF ITS A MESSAGE THAT CAN BE SPIED UPON,
+         PLEASE ENSURE YOU ALSO CREATE A SPY VERSION OF THE MESSAGE. SEE MESSAGE 
+         177 AND SPYRESULT_177 FOR EXAMPLES. -->
+</Entries>
