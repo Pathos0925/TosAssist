@@ -28,6 +28,7 @@ namespace TosAssist
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.startStopToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -37,6 +38,12 @@ namespace TosAssist
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Role = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Claims = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ConfirmedRole = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Dead = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Confirmed = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Notes_Lw = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AllNamesList = new System.Windows.Forms.ListBox();
             this.graveyardList = new System.Windows.Forms.ListBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -53,6 +60,16 @@ namespace TosAssist
             this.testRichText = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.TCPStatusLogText = new System.Windows.Forms.RichTextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.ServerStatusLabel = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.clientStatusLabel = new System.Windows.Forms.Label();
+            this.TCPStatusUpdater = new System.Windows.Forms.Timer(this.components);
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.customCommand = new System.Windows.Forms.TextBox();
+            this.sendCustomCommandButton = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -68,6 +85,10 @@ namespace TosAssist
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -76,7 +97,7 @@ namespace TosAssist
             this.startStopToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(727, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(781, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
@@ -94,9 +115,9 @@ namespace TosAssist
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.captureStatisticsToolStripStatusLabel});
-            this.statusStrip1.Location = new System.Drawing.Point(3, 469);
+            this.statusStrip1.Location = new System.Drawing.Point(3, 465);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(727, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(781, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -116,7 +137,7 @@ namespace TosAssist
             this.dataGridView.Location = new System.Drawing.Point(0, 28);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
-            this.dataGridView.Size = new System.Drawing.Size(727, 239);
+            this.dataGridView.Size = new System.Drawing.Size(781, 236);
             this.dataGridView.TabIndex = 0;
             this.dataGridView.SelectionChanged += new System.EventHandler(this.dataGridView_SelectionChanged);
             // 
@@ -127,7 +148,7 @@ namespace TosAssist
             | System.Windows.Forms.AnchorStyles.Right)));
             this.packetInfoTextbox.Location = new System.Drawing.Point(0, 0);
             this.packetInfoTextbox.Name = "packetInfoTextbox";
-            this.packetInfoTextbox.Size = new System.Drawing.Size(727, 192);
+            this.packetInfoTextbox.Size = new System.Drawing.Size(781, 191);
             this.packetInfoTextbox.TabIndex = 1;
             this.packetInfoTextbox.Text = "";
             // 
@@ -137,11 +158,12 @@ namespace TosAssist
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(741, 520);
+            this.tabControl1.Size = new System.Drawing.Size(795, 516);
             this.tabControl1.TabIndex = 3;
             // 
             // tabPage3
@@ -151,7 +173,7 @@ namespace TosAssist
             this.tabPage3.Controls.Add(this.graveyardList);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(733, 494);
+            this.tabPage3.Size = new System.Drawing.Size(787, 490);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Main";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -162,10 +184,50 @@ namespace TosAssist
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Role,
+            this.Claims,
+            this.ConfirmedRole,
+            this.Dead,
+            this.Confirmed,
+            this.Notes_Lw});
             this.dataGridView1.Location = new System.Drawing.Point(134, 3);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(591, 488);
+            this.dataGridView1.Size = new System.Drawing.Size(645, 484);
             this.dataGridView1.TabIndex = 4;
+            // 
+            // Role
+            // 
+            this.Role.HeaderText = "Role";
+            this.Role.Name = "Role";
+            // 
+            // Claims
+            // 
+            this.Claims.HeaderText = "Claims";
+            this.Claims.Name = "Claims";
+            // 
+            // ConfirmedRole
+            // 
+            this.ConfirmedRole.HeaderText = "ConfirmedRole";
+            this.ConfirmedRole.Name = "ConfirmedRole";
+            // 
+            // Dead
+            // 
+            this.Dead.HeaderText = "Dead";
+            this.Dead.Name = "Dead";
+            this.Dead.Width = 40;
+            // 
+            // Confirmed
+            // 
+            this.Confirmed.HeaderText = "Confirmed";
+            this.Confirmed.Name = "Confirmed";
+            this.Confirmed.Width = 60;
+            // 
+            // Notes_Lw
+            // 
+            this.Notes_Lw.HeaderText = "Notes / LW";
+            this.Notes_Lw.Name = "Notes_Lw";
+            this.Notes_Lw.Width = 200;
             // 
             // AllNamesList
             // 
@@ -185,11 +247,12 @@ namespace TosAssist
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.groupBox5);
             this.tabPage4.Controls.Add(this.groupBox2);
             this.tabPage4.Controls.Add(this.groupBox1);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(733, 494);
+            this.tabPage4.Size = new System.Drawing.Size(787, 490);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Utilities";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -290,7 +353,7 @@ namespace TosAssist
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(733, 494);
+            this.tabPage1.Size = new System.Drawing.Size(787, 490);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Events";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -300,7 +363,7 @@ namespace TosAssist
             this.testRichText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.testRichText.Location = new System.Drawing.Point(3, 3);
             this.testRichText.Name = "testRichText";
-            this.testRichText.Size = new System.Drawing.Size(727, 488);
+            this.testRichText.Size = new System.Drawing.Size(781, 484);
             this.testRichText.TabIndex = 0;
             this.testRichText.Text = "";
             // 
@@ -312,9 +375,9 @@ namespace TosAssist
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(733, 494);
+            this.tabPage2.Size = new System.Drawing.Size(787, 490);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "RawPackets";
+            this.tabPage2.Text = "WinPCapRawPackets";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
@@ -331,15 +394,105 @@ namespace TosAssist
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.packetInfoTextbox);
-            this.splitContainer1.Size = new System.Drawing.Size(727, 488);
-            this.splitContainer1.SplitterDistance = 267;
+            this.splitContainer1.Size = new System.Drawing.Size(781, 484);
+            this.splitContainer1.SplitterDistance = 264;
             this.splitContainer1.TabIndex = 2;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.TCPStatusLogText);
+            this.tabPage5.Controls.Add(this.groupBox4);
+            this.tabPage5.Controls.Add(this.groupBox3);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(787, 490);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "TCP";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // TCPStatusLogText
+            // 
+            this.TCPStatusLogText.Location = new System.Drawing.Point(8, 111);
+            this.TCPStatusLogText.Name = "TCPStatusLogText";
+            this.TCPStatusLogText.Size = new System.Drawing.Size(771, 371);
+            this.TCPStatusLogText.TabIndex = 2;
+            this.TCPStatusLogText.Text = "";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.ServerStatusLabel);
+            this.groupBox4.Location = new System.Drawing.Point(8, 57);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(215, 48);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "ServerStatus";
+            // 
+            // ServerStatusLabel
+            // 
+            this.ServerStatusLabel.Location = new System.Drawing.Point(6, 16);
+            this.ServerStatusLabel.Name = "ServerStatusLabel";
+            this.ServerStatusLabel.Size = new System.Drawing.Size(203, 21);
+            this.ServerStatusLabel.TabIndex = 0;
+            this.ServerStatusLabel.Text = "status";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.clientStatusLabel);
+            this.groupBox3.Location = new System.Drawing.Point(8, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(215, 48);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "ClientStatus";
+            // 
+            // clientStatusLabel
+            // 
+            this.clientStatusLabel.Location = new System.Drawing.Point(6, 16);
+            this.clientStatusLabel.Name = "clientStatusLabel";
+            this.clientStatusLabel.Size = new System.Drawing.Size(203, 21);
+            this.clientStatusLabel.TabIndex = 0;
+            this.clientStatusLabel.Text = "status";
+            // 
+            // TCPStatusUpdater
+            // 
+            this.TCPStatusUpdater.Enabled = true;
+            this.TCPStatusUpdater.Interval = 1;
+            this.TCPStatusUpdater.Tick += new System.EventHandler(this.TCPStatusUpdater_Tick);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.sendCustomCommandButton);
+            this.groupBox5.Controls.Add(this.customCommand);
+            this.groupBox5.Location = new System.Drawing.Point(220, 382);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(200, 93);
+            this.groupBox5.TabIndex = 4;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Send Custom Command";
+            // 
+            // customCommand
+            // 
+            this.customCommand.Location = new System.Drawing.Point(6, 19);
+            this.customCommand.Name = "customCommand";
+            this.customCommand.Size = new System.Drawing.Size(136, 20);
+            this.customCommand.TabIndex = 0;
+            // 
+            // sendCustomCommandButton
+            // 
+            this.sendCustomCommandButton.Location = new System.Drawing.Point(148, 16);
+            this.sendCustomCommandButton.Name = "sendCustomCommandButton";
+            this.sendCustomCommandButton.Size = new System.Drawing.Size(46, 23);
+            this.sendCustomCommandButton.TabIndex = 1;
+            this.sendCustomCommandButton.Text = "button1";
+            this.sendCustomCommandButton.UseVisualStyleBackColor = true;
+            this.sendCustomCommandButton.Click += new System.EventHandler(this.sendCustomCommandButton_Click);
             // 
             // CaptureForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(741, 520);
+            this.ClientSize = new System.Drawing.Size(795, 516);
             this.Controls.Add(this.tabControl1);
             this.Name = "CaptureForm";
             this.Text = "TosAssist";
@@ -365,6 +518,11 @@ namespace TosAssist
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -396,5 +554,21 @@ namespace TosAssist
         private System.Windows.Forms.Button forceDayActionButton;
         private System.Windows.Forms.Button sendChatButton;
         private System.Windows.Forms.Button voteForButton;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Role;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Claims;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ConfirmedRole;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Dead;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Confirmed;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Notes_Lw;
+        private System.Windows.Forms.Timer TCPStatusUpdater;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label clientStatusLabel;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label ServerStatusLabel;
+        private System.Windows.Forms.RichTextBox TCPStatusLogText;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button sendCustomCommandButton;
+        private System.Windows.Forms.TextBox customCommand;
     }
 }

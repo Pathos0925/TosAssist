@@ -15,6 +15,8 @@ using System.Xml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Xml.Serialization;
+using System.Net;
+using System.Threading;
 
 namespace TosAssist
 {
@@ -60,12 +62,27 @@ namespace TosAssist
         /// </param>
         private TimeSpan LastStatisticsInterval = new TimeSpan(0, 0, 2);
 
-        private System.Threading.Thread backgroundThread;
+       private System.Threading.Thread backgroundThread;
+
+        public enum TosConnectionType
+        {
+            WinPCap,
+            TCPIntercept
+        }
 
         private DeviceListForm deviceListForm;
         private ICaptureDevice device;
 
+
+        private Queue<byte[]> queuedCommands = new Queue<byte[]>();
+        private TosConnectionType connectionType;
+        private SocketHelper client;
+        private SocketHelper server;
+
         //ToS Stuff:
+
+        public string conHost = "live4.tos.blankmediagames.com";
+        byte[] pendingClientBytes;
 
         private int totalPacketsHandled = 0;
         private int incomingDataHandled = 0;
@@ -77,6 +94,7 @@ namespace TosAssist
         string lastNameUp = "";
 
         private Packet lastSentPacket = null;
+        private Packet lastReceivedPacket = null;
 
         List<ChatItem> chatlog = new List<ChatItem>();
 
@@ -126,13 +144,156 @@ namespace TosAssist
 
         private void CaptureForm_Load(object sender, EventArgs e)
         {
-            deviceListForm = new DeviceListForm();
-            deviceListForm.OnItemSelected += new DeviceListForm.OnItemSelectedDelegate(deviceListForm_OnItemSelected);
-            deviceListForm.OnCancel += new DeviceListForm.OnCancelDelegate(deviceListForm_OnCancel);
+            if (Properties.Settings.Default.rememberTCP == true)
+            {
+                deviceListForm_OnTCP();
+            }
+            else
+            {
+                deviceListForm = new DeviceListForm();
+                deviceListForm.OnItemSelected += new DeviceListForm.OnItemSelectedDelegate(deviceListForm_OnItemSelected);
+                deviceListForm.OnCancel += new DeviceListForm.OnCancelDelegate(deviceListForm_OnCancel);
+
+                deviceListForm.OnTCP += new DeviceListForm.OnTCPDelegate(deviceListForm_OnTCP);
+            }
+            
+        }
+
+        private void deviceListForm_OnTCP()
+        {
+            if (deviceListForm.rememberSelection)
+            {
+                Properties.Settings.Default.rememberTCP = true;
+            }
+            connectionType = TosConnectionType.TCPIntercept;
+            deviceListForm.Hide();
+            startStopToolStripButton.Enabled = false;
+            StartTCPServer();
+        }
+
+        private void StartTCPServer()
+        {
+            IPHostEntry ipHostInfo = Dns.Resolve(conHost);
+            IPAddress ipAddress = ipHostInfo.AddressList[0];
+            client = new SocketHelper(false, ipAddress.ToString(), 3600);
+            server = new SocketHelper(true, "127.0.0.1", 3601);
+
+            client.onConnected += ClientConnected;
+            client.onBytesReceived += ClientOnBytesReceived;
+
+            server.onConnected += ServerConnected;
+            server.onBytesReceived += ServerOnBytesReceived;
+
+            server.Start();
+        }
+        private void ClientOnBytesReceived(byte[] bytes)
+        {
+            server.SendBytes(bytes);
+
+
+            Log("Client IN, Server OUT: " + Utilities.ByteArrayToString(bytes));
+            //Log("UTF: " + Encoding.UTF8.GetString(bytes));
+            this.BeginInvoke(new MethodInvoker(delegate
+            {
+                HandleIncomingData(bytes);
+            }
+            ));
+            /*
+            try
+            {
+                lock (queuedCommands)
+                {
+                    var pieces = Utilities.Separate(bytes, new byte[] { 0x00 });
+
+                    for (int i = 0; i < pieces.Length; i++)
+                    {
+                        if (i == pieces.Length - 1)
+                        {
+
+                        }
+                        else
+                        {
+                            if (i == pieces.Length - 2)
+                            {
+                                var newPieces = pieces.ToList();
+                                var newPiecesPart = newPieces[pieces.Length - 2].ToList();
+                                newPiecesPart.Add(0x00);
+                                pieces[pieces.Length - 2] = newPiecesPart.ToArray();
+
+                                queuedCommands.Enqueue(newPiecesPart.ToArray());
+                            }
+                            else
+                            {
+                                if (pieces[i].Length > 0 && pieces[i][pieces[i].Length - 1] != 0)
+                                {
+                                    var newArray = pieces[i].ToList();
+                                    newArray.Add(0);
+
+                                    queuedCommands.Enqueue(newArray.ToArray());
+                                }
+                                else
+                                {
+                                    queuedCommands.Enqueue(pieces[i]);
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Log(e.ToString());
+            }
+            */
+
+
+        }
+        private void ClientConnected()
+        {
+            Log("Client Connected");
+
+            if (pendingClientBytes != null)
+            {
+                client.SendBytes(pendingClientBytes);
+                Log("Sent client pending bytes, length: " + pendingClientBytes.Length);
+                pendingClientBytes = null;
+            }
+        }
+        private void ServerConnected()
+        {
+            client.Start();
+            Log("Server connected. Starting Client");
+        }
+        private void ServerOnBytesReceived(byte[] bytes)
+        {
+
+            if (client.worker == null || !client.worker.Connected)
+            {
+                pendingClientBytes = bytes;
+                Log("Pending bytes from server added! length: " + bytes.Length);
+            }
+            else
+            {
+                client.SendBytes(bytes);
+            }
+
+
+            Log("Server IN, Client OUT: " + Utilities.ByteArrayToString(bytes));
+            //Log("UTF: " + Encoding.UTF8.GetString(bytes));
+        }
+        private void Log(string v)
+        {
+            this.BeginInvoke(new MethodInvoker(delegate
+            {
+                TCPStatusLogText.Text += v + Environment.NewLine;
+            }
+            ));
         }
 
         void deviceListForm_OnItemSelected(int itemIndex)
         {
+            connectionType = TosConnectionType.WinPCap;
             // close the device list form
             deviceListForm.Hide();
 
@@ -301,7 +462,7 @@ namespace TosAssist
 
                 if (shouldSleep)
                 {
-                    System.Threading.Thread.Sleep(250);
+                    System.Threading.Thread.Sleep(10);
                 }
                 else // should process the queue
                 {
@@ -435,6 +596,7 @@ namespace TosAssist
                         }
                         else
                         {
+                            lastReceivedPacket = packetParsed;
                             //incoming packet
                             //testRichText.Text = System.Text.Encoding.Default.GetString(tcp.PayloadData);
                             HandleIncomingData(tcp.PayloadData);
@@ -479,8 +641,8 @@ namespace TosAssist
         { 
                  //case 0: DefaultFunction(command); break;
                  //case 1: DefaultFunction(command); break;
-                 //case 2: DefaultFunction(command); break;
-                 //case 3: DefaultFunction(command); break;
+                 case 2: JoinedGameLobby(command); break;
+                 case 3: DefaultFunction(command); break;
                  //case 4: DefaultFunction(command); break;
                  case 5: UserLeftGame(command); break;
                  case 6: ChatBoxMessage(command); break;
@@ -653,7 +815,7 @@ namespace TosAssist
                  case 171: EndGameInfo(command); break;
                  case 172: EndGameChatMessage(command); break;
                  case 173: EndGameUserUpdate(command); break;
-                 case 174: DefaultFunction(command); break;
+                 case 174: JoinedGameLobby(command); break;
                  case 175: RoleLotsInfoMesssage(command); break;
                  //case 176: PayPalShowApprovalPage(command); break;
                  //case 177: DefaultFunction(command); break;
@@ -711,6 +873,11 @@ namespace TosAssist
                 default: UnhandledCommand(command); break;
         }
     }
+
+        private void DefaultFunction(byte[] command)
+        {
+            throw new NotImplementedException();
+        }
 
         private void ChatBoxMessage(byte[] command)
         {
@@ -903,11 +1070,11 @@ namespace TosAssist
         {
             Console.WriteLine("Unhandled command: " + command[0] + " " + Utilities.GetCommandNameFromIndex(command[0]));
         }
-
-        private void DefaultFunction(byte[] command)
+        
+        private void JoinedGameLobby(byte[] command)
         {
             //throw new NotImplementedException();
-            Console.WriteLine("DefaultFunction: " + command[0]);
+            Console.WriteLine("JoinedGameLobby: " + command[1]);
         }
 
         private string GetActionString(string id)
@@ -987,34 +1154,43 @@ namespace TosAssist
             toSend.Add(Convert.ToByte(0));
 
 
-            SendData(toSend.ToArray());
+            //SendData(toSend.ToArray());
+            client.SendBytes(toSend.ToArray());
         }
 
         private void sendChatButton_Click(object sender, EventArgs e)
         {
             var messageBytes = System.Text.Encoding.UTF8.GetBytes(Convert.ToChar(3) + sendMessageText.Text + Convert.ToChar(0));
 
-            SendData(messageBytes);
+            //SendData(messageBytes);
+            client.SendBytes(messageBytes);
         }
 
+        /*
         private void SendData(byte[] data)
         {
             try
             {
-                var eth = ((PacketDotNet.EthernetPacket)lastSentPacket);
-                var ip = (PacketDotNet.IPPacket)lastSentPacket.Extract(typeof(PacketDotNet.IPPacket));
+                var eth_out = ((PacketDotNet.EthernetPacket)lastSentPacket);
+                var ip_out = (PacketDotNet.IPPacket)lastSentPacket.Extract(typeof(PacketDotNet.IPPacket));
+                var tcp_out = (PacketDotNet.TcpPacket)lastSentPacket.Extract(typeof(PacketDotNet.TcpPacket));
 
-                var tcp = (PacketDotNet.TcpPacket)lastSentPacket.Extract(typeof(PacketDotNet.TcpPacket));
+                var eth_in = ((PacketDotNet.EthernetPacket)lastReceivedPacket);
+                var ip_in = (PacketDotNet.IPPacket)lastReceivedPacket.Extract(typeof(PacketDotNet.IPPacket));
+                var tcp_in = (PacketDotNet.TcpPacket)lastReceivedPacket.Extract(typeof(PacketDotNet.TcpPacket));
+                
 
-
-                var ethernetPacket = new PacketDotNet.EthernetPacket(eth.SourceHwAddress, eth.DestinationHwAddress, eth.Type);
-                ethernetPacket.PayloadPacket = ip;
+                var ethernetPacket = new PacketDotNet.EthernetPacket(eth_out.SourceHwAddress, eth_out.DestinationHwAddress, eth_out.Type);
+                ethernetPacket.PayloadPacket = ip_out;
                 //ethernetPacket.PayloadPacket.PayloadPacket =
                 //var tcpPacket = new TcpPacket(tcp.SourcePort, tcp.DestinationPort);
 
                 ethernetPacket.PayloadPacket.PayloadPacket.PayloadData = data;
                 //(eth.PayloadPacket.PayloadPacket as PacketDotNet.TcpPacket).AcknowledgmentNumber++;
-                (ethernetPacket.PayloadPacket.PayloadPacket as PacketDotNet.TcpPacket).Ack = false;
+                (ethernetPacket.PayloadPacket.PayloadPacket as PacketDotNet.TcpPacket).SequenceNumber = tcp_in.AcknowledgmentNumber;
+                (ethernetPacket.PayloadPacket.PayloadPacket as PacketDotNet.TcpPacket).AcknowledgmentNumber = tcp_in.SequenceNumber;
+                (ethernetPacket.PayloadPacket.PayloadPacket as PacketDotNet.TcpPacket).Psh = true;
+                (ethernetPacket.PayloadPacket.PayloadPacket as PacketDotNet.TcpPacket).Ack = true;
                 (ethernetPacket.PayloadPacket.PayloadPacket as PacketDotNet.TcpPacket).UpdateCalculatedValues();
                 (ethernetPacket.PayloadPacket.PayloadPacket as PacketDotNet.TcpPacket).UpdateTCPChecksum();
                 (ethernetPacket.PayloadPacket.PayloadPacket as PacketDotNet.TcpPacket).UpdateCalculatedValues();
@@ -1025,7 +1201,7 @@ namespace TosAssist
                 //tcpPacket.CalculateTCPChecksum();
 
 
-                device.SendPacket(eth);
+                device.SendPacket(ethernetPacket);
 
             }
             catch(Exception e)
@@ -1033,6 +1209,7 @@ namespace TosAssist
                 Console.WriteLine("Couldent send data: " + e.ToString());
             }
         }
+        */
 
         private void voteForButton_Click(object sender, EventArgs e)
         {
@@ -1041,7 +1218,40 @@ namespace TosAssist
             toSend.Add(Convert.ToByte(nameActionCombo.SelectedIndex + 1));
             toSend.Add(Convert.ToByte(0));
 
-            SendData(toSend.ToArray());
+            client.SendBytes(toSend.ToArray());
+            //SendData(toSend.ToArray());
+        }
+
+        private void TCPStatusUpdater_Tick(object sender, EventArgs e)
+        {
+            if (connectionType != TosConnectionType.TCPIntercept)
+                return;
+
+            if (server != null)
+                ServerStatusLabel.Text = server.GetStatus();
+            if (client != null)
+                clientStatusLabel.Text = client.GetStatus();
+        }
+
+        private void sendCustomCommandButton_Click(object sender, EventArgs e)
+        {
+            if (connectionType != TosConnectionType.TCPIntercept)
+                return;
+            if (client == null || client.worker == null)
+                return;
+
+            try
+            {
+                var chars = Utilities.StringToByteArray(customCommand.Text);
+
+                client.SendBytes(chars);
+            }
+            catch( Exception er)
+            {
+                Log(er.ToString());
+            }
+            
+
         }
     }
 }

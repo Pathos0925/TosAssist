@@ -12,6 +12,7 @@ namespace TosAssist
 {
     public partial class DeviceListForm : Form
     {
+        public bool rememberSelection = false;
         public DeviceListForm()
         {
             InitializeComponent();
@@ -31,6 +32,9 @@ namespace TosAssist
 
         public delegate void OnCancelDelegate();
         public event OnCancelDelegate OnCancel;
+        
+        public delegate void OnTCPDelegate();
+        public event OnTCPDelegate OnTCP;
 
         private void buttonCancel_Click(object sender, EventArgs e)
         {
@@ -51,6 +55,21 @@ namespace TosAssist
             {
                 OnItemSelected(deviceList.SelectedIndex);
             }
+        }
+
+        private void UseTCPButton_Click(object sender, EventArgs e)
+        {
+            OnTCP();
+        }
+
+        private void deviceList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RememberDeviceCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            rememberSelection = RememberDeviceCheckbox.Checked;
         }
     }
 }
