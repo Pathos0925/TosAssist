@@ -17,6 +17,7 @@ using Newtonsoft.Json.Linq;
 using System.Xml.Serialization;
 using System.Net;
 using System.Threading;
+using PSHostsFile;
 
 namespace TosAssist
 {
@@ -90,7 +91,7 @@ namespace TosAssist
         private List<Entry> stringTable;
 
         private bool isCovenGame = true;
-        string[] names = new string[15];
+        string[] playerNames = new string[15];
         string lastNameUp = "";
 
         private Packet lastSentPacket = null;
@@ -98,13 +99,41 @@ namespace TosAssist
 
         List<ChatItem> chatlog = new List<ChatItem>();
 
+        List<int> roleList = new List<int>();
+
+        ToSRoleList ToSRoleList;
+        DataGridViewRow templateRow;
+
+        DataTable dataSource = new DataTable();
 
         public CaptureForm()
         {
             InitializeComponent();
             Application.ApplicationExit += new EventHandler(Application_ApplicationExit);
             InitStringTable();
+            ToSRoleList = new ToSRoleList();
+
+
+            
+            var control1 = new UserControl1(0, 33, "Random Town",  new List<string>() { "Player1", "Player2" });
+            control1.OnAddClaimant += (index) => { };
+            control1.OnConfirmed += (confirmed) => { };
+            control1.OnDead += (dead) => { };
+            control1.OnRemoveClaimant += (index) => { };
+
+            rolesLayoutPanel.Controls.Add(control1);
+
+            var control2 = new UserControl1(1, 4, "Jailor", new List<string>() { "Player1", "Player2" });
+            control2.OnAddClaimant += (index) => { };
+            control2.OnConfirmed += (confirmed) => { };
+            control2.OnDead += (dead) => { };
+            control2.OnRemoveClaimant += (index) => { };
+
+            rolesLayoutPanel.Controls.Add(control2);
+            
+
         }
+
 
         private void InitStringTable()
         {
@@ -140,6 +169,19 @@ namespace TosAssist
 
         void Application_ApplicationExit(object sender, EventArgs e)
         {
+            try
+            {
+
+                HostsFile.Remove(conHost);
+                Console.WriteLine("HostsFile Removed");
+
+                client.CloseConnection();
+                server.CloseConnection();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void CaptureForm_Load(object sender, EventArgs e)
@@ -158,9 +200,11 @@ namespace TosAssist
             }
             
         }
+       
 
         private void deviceListForm_OnTCP()
         {
+            tabControl1.TabPages.RemoveAt(3);
             if (deviceListForm.rememberSelection)
             {
                 Properties.Settings.Default.rememberTCP = true;
@@ -173,10 +217,34 @@ namespace TosAssist
 
         private void StartTCPServer()
         {
-            IPHostEntry ipHostInfo = Dns.Resolve(conHost);
-            IPAddress ipAddress = ipHostInfo.AddressList[0];
-            client = new SocketHelper(false, ipAddress.ToString(), 3600);
-            server = new SocketHelper(true, "127.0.0.1", 3601);
+            for (int i = 0; i < 2; i++)
+            {
+                IPHostEntry ipHostInfo = Dns.Resolve(conHost);
+                IPAddress ipAddress = ipHostInfo.AddressList[0];
+
+                conIP = ipAddress.ToString();
+                Console.WriteLine("conIP: " + conIP);
+
+                client = new SocketHelper(false, ipAddress.ToString(), 3600);
+                server = new SocketHelper(true, "127.0.0.1", 3600);
+
+                HostsFile.Set(conHost, "127.0.0.1");
+                Console.WriteLine("HostsFile Added");
+                var postResolve = Dns.Resolve(conHost).AddressList[0].ToString();
+                Console.WriteLine("conIP post resolve: " + postResolve);
+                if (postResolve == conIP)
+                {
+                    HostsFile.Remove(conHost);
+                    Log("Client address is localhost. Attempting to remove and trying again.");
+
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            
 
             client.onConnected += ClientConnected;
             client.onBytesReceived += ClientOnBytesReceived;
@@ -198,55 +266,6 @@ namespace TosAssist
                 HandleIncomingData(bytes);
             }
             ));
-            /*
-            try
-            {
-                lock (queuedCommands)
-                {
-                    var pieces = Utilities.Separate(bytes, new byte[] { 0x00 });
-
-                    for (int i = 0; i < pieces.Length; i++)
-                    {
-                        if (i == pieces.Length - 1)
-                        {
-
-                        }
-                        else
-                        {
-                            if (i == pieces.Length - 2)
-                            {
-                                var newPieces = pieces.ToList();
-                                var newPiecesPart = newPieces[pieces.Length - 2].ToList();
-                                newPiecesPart.Add(0x00);
-                                pieces[pieces.Length - 2] = newPiecesPart.ToArray();
-
-                                queuedCommands.Enqueue(newPiecesPart.ToArray());
-                            }
-                            else
-                            {
-                                if (pieces[i].Length > 0 && pieces[i][pieces[i].Length - 1] != 0)
-                                {
-                                    var newArray = pieces[i].ToList();
-                                    newArray.Add(0);
-
-                                    queuedCommands.Enqueue(newArray.ToArray());
-                                }
-                                else
-                                {
-                                    queuedCommands.Enqueue(pieces[i]);
-
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Log(e.ToString());
-            }
-            */
-
 
         }
         private void ClientConnected()
@@ -286,6 +305,7 @@ namespace TosAssist
         {
             this.BeginInvoke(new MethodInvoker(delegate
             {
+                Console.WriteLine(v);
                 TCPStatusLogText.Text += v + Environment.NewLine;
             }
             ));
@@ -293,6 +313,7 @@ namespace TosAssist
 
         void deviceListForm_OnItemSelected(int itemIndex)
         {
+            tabControl1.TabPages.RemoveAt(4);
             connectionType = TosConnectionType.WinPCap;
             // close the device list form
             deviceListForm.Hide();
@@ -398,6 +419,7 @@ namespace TosAssist
         private BindingSource bs;
         private ICaptureStatistics captureStatistics;
         private bool statisticsUiNeedsUpdate = false;
+        private string conIP;
 
         void device_OnPacketArrival(object sender, CaptureEventArgs e)
         {
@@ -623,14 +645,28 @@ namespace TosAssist
 
         private void HandleIncomingData(byte[] data)
         {
-            if (testRichText.Text.Length > 100000)
-                testRichText.Text = "";
-            incomingDataHandled++;
-            if (data.Length > 0)
+            var seperated = Utilities.Separate(data, new byte[] { 0x00 });
+
+            foreach(var array in seperated)
             {
-                testRichText.Text += Environment.NewLine + incomingDataHandled.ToString() + ": " + Utilities.GetCommandNameFromIndex(data[0]) + " " + Utilities.ByteArrayToString(data);
-                ParseCommand(data);
+                if (testRichText.Text.Length > 100000)
+                    testRichText.Text = "";
+                incomingDataHandled++;
+                if (array.Length > 0)
+                {
+                    testRichText.Text += Environment.NewLine + incomingDataHandled.ToString() + ": " + Utilities.GetCommandNameFromIndex(array[0]) + " " + Utilities.ByteArrayToString(array);
+
+                    try
+                    {
+                        ParseCommand(array);
+                    }
+                    catch(Exception e)
+                    {
+                        Log(e.ToString());
+                    }
+                }
             }
+            
             
         }
 
@@ -876,7 +912,7 @@ namespace TosAssist
 
         private void DefaultFunction(byte[] command)
         {
-            throw new NotImplementedException();
+
         }
 
         private void ChatBoxMessage(byte[] command)
@@ -888,6 +924,8 @@ namespace TosAssist
 
         private void RoleLotsInfoMesssage(byte[] command)
         {
+            //odds of getting roles
+
             //throw new NotImplementedException();
         }
 
@@ -970,7 +1008,35 @@ namespace TosAssist
 
         private void TellRoleList(byte[] command)
         {
+            roleList = new List<int>();
+            var  roleListBytes = Utilities.RemoveStartingBytes(1, command);
+            for (int i =0; i< roleListBytes.Length; i++)
+            {
+                roleList.Add(roleListBytes[i]);
+            }
+            UpdateGridRows();
             //throw new NotImplementedException();
+        }
+
+        private void UpdateGridRows()
+        {
+            //dataGridView.Dispose();
+            rolesLayoutPanel.Controls.Clear();
+            for (int i = 0; i < roleList.Count; i++)
+            {
+                var roleName = ToSRoleList.instance.m_roleIdToNameMap[roleList[i] - 1];
+
+
+                var control1 = new UserControl1(i, roleList[i] - 1, roleName,  playerNames.ToList());
+                control1.OnAddClaimant += (index) => { };
+                control1.OnConfirmed += (confirmed) => { };
+                control1.OnDead += (dead) => { };
+                control1.OnRemoveClaimant += (index) => { };
+
+                rolesLayoutPanel.Controls.Add(control1);
+            }
+
+            
         }
 
         private void Resurrection(byte[] command)
@@ -1015,7 +1081,19 @@ namespace TosAssist
 
         private void NamesAndPositionsOfUsers(byte[] command)
         {
-            //throw new NotImplementedException();
+            //Final Name chosen, this includes the randomly picked names
+
+            var indexAndName = Utilities.RemoveStartingBytes(1, command);
+            var index = command[0];
+            if (index <= 15)
+            {
+                var nameBytes = Utilities.RemoveStartingBytes(1, command);
+                string name = System.Text.Encoding.UTF8.GetString(nameBytes);
+
+                AddName(name, index - 1);
+            }
+            
+
         }
 
         private void StringTableMessage(byte[] command)
@@ -1043,6 +1121,7 @@ namespace TosAssist
 
         private void UserLeftGame(byte[] command)
         {
+            Log("User left the game");
             //throw new NotImplementedException();
         }
 
@@ -1093,7 +1172,7 @@ namespace TosAssist
         private void AddName(string name, int index)
         {
             name = name.Trim('\0');
-            names[index - 1] = name;
+            playerNames[index - 1] = name;
 
             UpdateNames();
         }
@@ -1104,10 +1183,10 @@ namespace TosAssist
             nameActionCombo.Items.Clear();
             for (int i = 0; i < 15; i++)
             {
-                if (names[i] != null)
+                if (playerNames[i] != null)
                 {
-                    AllNamesList.Items.Add((i + 1).ToString() + ") " + names[i]);
-                    nameActionCombo.Items.Add((i + 1) + ") " + names[i]);
+                    AllNamesList.Items.Add((i + 1).ToString() + ") " + playerNames[i]);
+                    nameActionCombo.Items.Add((i + 1) + ") " + playerNames[i]);
                 }
                 else
                 {
@@ -1126,7 +1205,7 @@ namespace TosAssist
             string playerName = player.ToString();
             if (player < 15 && player > 0)
             {
-                playerName = names[player];
+                playerName = playerNames[player];
 
                 AddToChat("(" + (player + 1) + ") " + playerName + ": " + chat);
             }
@@ -1142,7 +1221,7 @@ namespace TosAssist
         }
         private void FoundNextGame()
         {
-            names = new string[names.Length];
+            playerNames = new string[playerNames.Length];
             mainTextRichText.Text += "----NEXT GAME----" + Environment.NewLine;           
         }
 
@@ -1252,6 +1331,33 @@ namespace TosAssist
             }
             
 
+        }
+
+        private void secondaryButton_Click(object sender, EventArgs e)
+        {
+            List<byte> toSend = new List<byte>();
+            toSend.Add(Convert.ToByte(12));
+            toSend.Add(Convert.ToByte(nameActionCombo.SelectedIndex + 1));
+            toSend.Add(Convert.ToByte(0));
+            client.SendBytes(toSend.ToArray());
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+    }
+    public static class RichTextBoxExtensions
+    {
+        public static void AppendText(this RichTextBox box, string text, Color color)
+        {
+            box.SelectionStart = box.TextLength;
+            box.SelectionLength = 0;
+
+            box.SelectionColor = color;
+            box.AppendText(text);
+            box.SelectionColor = box.ForeColor;
         }
     }
 }

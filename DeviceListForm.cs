@@ -71,5 +71,16 @@ namespace TosAssist
         {
             rememberSelection = RememberDeviceCheckbox.Checked;
         }
+
+        private void ViewWinpcapButton_Click(object sender, EventArgs e)
+        {
+            ConnectionOptionTab.SelectedIndex = 0;
+        }
+
+        private void ViewTCPButton_Click(object sender, EventArgs e)
+        {
+
+            ConnectionOptionTab.SelectedIndex = 1;
+        }
     }
 }
