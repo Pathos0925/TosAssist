@@ -106,6 +106,7 @@
             this.removeClaimantButton1.TabIndex = 5;
             this.removeClaimantButton1.Text = "-";
             this.removeClaimantButton1.UseVisualStyleBackColor = true;
+            this.removeClaimantButton1.Click += new System.EventHandler(this.removeClaimantButton1_Click);
             // 
             // roleNameText1
             // 

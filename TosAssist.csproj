@@ -64,6 +64,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddClaimantForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddClaimantForm.Designer.cs">
+      <DependentUpon>AddClaimantForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CaptureForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
       <DependentUpon>UserControl1.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities.cs" />
+    <EmbeddedResource Include="AddClaimantForm.resx">
+      <DependentUpon>AddClaimantForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CaptureForm.resx">
       <DependentUpon>CaptureForm.cs</DependentUpon>
       <SubType>Designer</SubType>

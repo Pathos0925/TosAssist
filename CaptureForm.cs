@@ -106,6 +106,8 @@ namespace TosAssist
 
         DataTable dataSource = new DataTable();
 
+        AddClaimantForm claimantForm;
+
         public CaptureForm()
         {
             InitializeComponent();
@@ -113,10 +115,21 @@ namespace TosAssist
             InitStringTable();
             ToSRoleList = new ToSRoleList();
 
+            //claimantForm = new AddClaimantForm();
+            //claimantForm.Hide();
 
-            
+            /*
             var control1 = new UserControl1(0, 33, "Random Town",  new List<string>() { "Player1", "Player2" });
-            control1.OnAddClaimant += (index) => { };
+            control1.OnAddClaimant += (index) =>
+            {
+                LoadClaimantForm();
+                claimantForm.OnSelected += (claimant) =>
+                {
+                    int selectedClaimant = claimant;
+                    control1.ExternalAddClaimant(selectedClaimant);
+                };
+                claimantForm.Show();
+            };
             control1.OnConfirmed += (confirmed) => { };
             control1.OnDead += (dead) => { };
             control1.OnRemoveClaimant += (index) => { };
@@ -124,14 +137,30 @@ namespace TosAssist
             rolesLayoutPanel.Controls.Add(control1);
 
             var control2 = new UserControl1(1, 4, "Jailor", new List<string>() { "Player1", "Player2" });
-            control2.OnAddClaimant += (index) => { };
+            control2.OnAddClaimant += (index) =>
+            {
+                LoadClaimantForm();
+                claimantForm.OnSelected += (claimant) =>
+                {
+                    int selectedClaimant = claimant;
+                    control2.ExternalAddClaimant(selectedClaimant);
+                };
+                claimantForm.Show();
+            };
             control2.OnConfirmed += (confirmed) => { };
             control2.OnDead += (dead) => { };
             control2.OnRemoveClaimant += (index) => { };
 
             rolesLayoutPanel.Controls.Add(control2);
-            
+            */
 
+        }
+
+        private void LoadClaimantForm()
+        {
+            claimantForm = new AddClaimantForm();
+            claimantForm.AddPlayers(playerNames.ToList());
+            claimantForm.Show();
         }
 
 
@@ -186,6 +215,7 @@ namespace TosAssist
 
         private void CaptureForm_Load(object sender, EventArgs e)
         {
+            
             if (Properties.Settings.Default.rememberTCP == true)
             {
                 deviceListForm_OnTCP();
@@ -1028,7 +1058,16 @@ namespace TosAssist
 
 
                 var control1 = new UserControl1(i, roleList[i] - 1, roleName,  playerNames.ToList());
-                control1.OnAddClaimant += (index) => { };
+                control1.OnAddClaimant += (index) =>
+                {
+                    LoadClaimantForm();
+                    claimantForm.OnSelected += (claimant) =>
+                    {
+                        int selectedClaimant = claimant;
+                        control1.ExternalAddClaimant(selectedClaimant);
+                    };
+                    claimantForm.Show();
+                };
                 control1.OnConfirmed += (confirmed) => { };
                 control1.OnDead += (dead) => { };
                 control1.OnRemoveClaimant += (index) => { };
@@ -1061,7 +1100,28 @@ namespace TosAssist
 
         private void WhoDiedAndHow(byte[] command)
         {
-            //throw new NotImplementedException();
+            int playerIndex = command[1];
+            int role = command[2];
+            int cause1 = command[3];
+            int cause2 = command[4];
+
+            string causeString = "";
+            if (cause1 == 0x3D && cause2 == 0x01)
+            {
+                causeString = "MAFIA";
+            }
+            else if (cause1 == 0x01 && cause2 == 0x06)
+            {
+                causeString = "SUICIDE";
+            }
+
+            if (role == 61)
+            {
+                //player cleaned;
+                
+            }
+
+            Log("Player died: " + playerNames[playerIndex] + " Role: " + role + "Cause " + cause1 + " " + cause2);
         }
 
         private void StartDay(byte[] command)

@@ -85,7 +85,7 @@ namespace TosAssist
 
         private void addClaimantButton1_Click(object sender, EventArgs e)
         {
-
+            OnAddClaimant(index);
         }
 
         public void AddClaimant(string name)
@@ -168,7 +168,8 @@ namespace TosAssist
         }
         public void ExternalAddClaimant(int index)
         {
-            claimantsListbox1.Items.Add(playerNames[index]);
+            //claimantsListbox1.Items.Add(playerNames[index]);
+            AddClaimant(playerNames[index]);
         }
         public void ExternalRemoveClaimant(int index)
         {
@@ -206,6 +207,20 @@ namespace TosAssist
            
 
             return Color.Black;
+        }
+
+        private void removeClaimantButton1_Click(object sender, EventArgs e)
+        {
+            if (claimantsListbox1.SelectedIndex > -1)
+            {
+                string claimantName = (string)claimantsListbox1.Items[claimantsListbox1.SelectedIndex];
+                if (claimants.Contains(claimantName))
+                {
+                    claimants.Remove(claimantName);
+                    claimantsListbox1.Items.RemoveAt(claimantsListbox1.SelectedIndex);
+                }
+            }
+           
         }
     }
 
