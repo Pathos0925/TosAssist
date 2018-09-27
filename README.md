@@ -1,6 +1,6 @@
 # TosAssist
 
 Town of Salem tool to help keep track of information.
-Requires Winpcap to function!
+Works with Winpcap or TCP intecept
 
-Right not it only tracks names, but more features are planned.
+Currently tracks names and lists roles
